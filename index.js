@@ -23,18 +23,15 @@ const targets = {
   body: bodyMotor,
 };
 
-
-
 rl.on("line", (input) => {
-    input.split(',').forEach(exec => {
-        const [cmd, target, value] = exec.trim().split(' ');
-        try {
-        targets[target][cmd](Number(value));
-        } catch(e) {
-            console.error("Sorry, ",e);
-        }
-    })
-
+  input.split(",").forEach((exec) => {
+    const [cmd, target, value] = exec.trim().split(" ");
+    try {
+      targets[target][cmds[cmd]](Number(value));
+    } catch (e) {
+      console.error("Sorry, ", e);
+    }
+  });
 });
 
 setInterval(() => {}, 1000);
