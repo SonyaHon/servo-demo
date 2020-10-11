@@ -27,6 +27,7 @@ const cmdParser = new CmdParser({
 
 cmdParser.init();
 rl.on("line", (input) => {
+    console.log(input);
     cmdParser.process(input);
 });
 
