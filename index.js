@@ -1,37 +1,33 @@
 const Gpio = require("pigpio").Gpio;
 const readline = require("readline");
+const CmdParser = require('./cmdparser');
 
 console.log("init servos");
 const headMotor = new Gpio(14, { mode: Gpio.OUTPUT });
 const bodyMotor = new Gpio(15, { mode: Gpio.OUTPUT });
-
-console.log("Just set servos to zero");
-headMotor.servoWrite(2300);
-bodyMotor.servoWrite(800);
 
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 
-const cmds = {
-  mov: "servoWrite",
-};
 
-const targets = {
-  head: headMotor,
-  body: bodyMotor,
-};
-
-rl.on("line", (input) => {
-  input.split(",").forEach((exec) => {
-    const [cmd, target, value] = exec.trim().split(" ");
-    try {
-      targets[target][cmds[cmd]](Number(value));
-    } catch (e) {
-      console.error("Sorry, ", e);
+const cmdParser = new CmdParser({
+    head: {
+        is: headMotor,
+        nullVal: 800,
+        maxVal: 2300,
+    },
+    body: {
+        is: bodyMotor,
+        nullVal:800,
+        maxVal: 2300
     }
-  });
+});
+
+cmdParser.init();
+rl.on("line", (input) => {
+    cmdParser.process(input);
 });
 
 setInterval(() => {}, 1000);
