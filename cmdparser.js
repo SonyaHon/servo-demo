@@ -40,7 +40,8 @@ class CmdParser {
 
     // log
     process(input) {
-        input.split(',', task => {
+
+        input.split(',').forEach(task => {
             const [cmd, target, value] = task.trim().split(' ');
             console.log('Task is', task);
             try {
@@ -48,7 +49,7 @@ class CmdParser {
             } catch(e) {
                 console.error(e);
             }
-        })        
+        });
 
     }
 }
