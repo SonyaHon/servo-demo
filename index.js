@@ -1,10 +1,11 @@
-const Gpio  = require('pigpio').Gpio;
+const Gpio = require("pigpio").Gpio;
 
-const headMotor = new Gpio(14, {mode: Gpio.OUTPUT});
-const bodyMotor = new Gpio(15, {mode: Gpio.OUTPUT});
+console.log("init servos")
+const headMotor = new Gpio(14, { mode: Gpio.OUTPUT });
+const bodyMotor = new Gpio(15, { mode: Gpio.OUTPUT });
 
-
-// both servos at zero
-headMotor.servoWrite(500);
-bodyMotor.servoWrite(500);
-
+console.log("Just set servos to zero");
+setInterval(() => {
+  headMotor.servoWrite(500);
+  bodyMotor.servoWrite(500);
+}, 1000);
