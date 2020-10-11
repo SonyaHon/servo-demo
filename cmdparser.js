@@ -27,6 +27,7 @@ class CmdParser {
         const val = Number(value);
         if(this[`${target}Ref`].min <= val && this[`${target}Ref`].max >= val) {
             this[target].servoWrite(val);
+            this[`${target}Current`] = val;
         }
     }
 
@@ -35,6 +36,7 @@ class CmdParser {
         const val = this[`${target}Current`] + diff;
         if(this[`${target}Ref`].min <= val && this[`${target}Ref`].max >= val) {
             this[target].servoWrite(val);
+            this[`${target}Current`] = val;
         }
     }
 
