@@ -13,7 +13,7 @@ class CmdParser {
         };
         this.bodyRef = {
             min: opts.body.nullVal,
-            max: opts.body.maxVal;
+            max: opts.body.maxVal,
         }
     }
 
