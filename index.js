@@ -6,6 +6,6 @@ const bodyMotor = new Gpio(15, { mode: Gpio.OUTPUT });
 
 console.log("Just set servos to zero");
 setInterval(() => {
-  headMotor.servoWrite(500);
-  bodyMotor.servoWrite(500);
+  headMotor.servoWrite(2300);
+  bodyMotor.servoWrite(800);
 }, 1000);
