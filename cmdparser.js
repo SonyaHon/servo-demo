@@ -42,6 +42,7 @@ class CmdParser {
     process(input) {
         input.split(',', task => {
             const [cmd, target, value] = task.trim().split(' ');
+            console.log('Task is', task);
             try {
             this[cmd](target, value);
             } catch(e) {
